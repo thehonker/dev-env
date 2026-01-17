@@ -8,12 +8,13 @@ RUN set -exu \
     cmake \
     g++ \
     gcc \
+    gosu \
     make \
     nodejs \
+    npm \
     pipx \
     py3-pip \
-    python3 \
-    gosu
+    python3
 
 COPY entrypoint.sh /entrypoint.sh
 
