@@ -1,5 +1,7 @@
 FROM docker.io/alpine:3
 
+ARG DOCKER_USER=default_user
+
 RUN set -exu \
   && apk add --no-cache \
     bash \
@@ -10,24 +12,12 @@ RUN set -exu \
     nodejs \
     pipx \
     py3-pip \
-    python3
+    python3 \
+    gosu
 
-RUN set -exu \
-  && addgroup \
-    --gid 1000 \
-    user \
-  && adduser \
-    --uid 1000 \
-    --ingroup user \
-    --disabled-password \
-    --gecos user \
-    user \
-  && mkdir -pv /work \
-  && chown 501:20 /work
-
-USER user
+COPY entrypoint.sh /entrypoint.sh
 
 WORKDIR /work
 
 ENTRYPOINT ["/bin/bash"]
-CMD ["--login"]
+CMD ["/entrypoint.sh"]
