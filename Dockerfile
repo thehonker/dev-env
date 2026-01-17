@@ -14,10 +14,10 @@ RUN set -exu \
 
 RUN set -exu \
   && addgroup \
-    --gid 20 \
+    --gid 1000 \
     user \
   && adduser \
-    --uid 501 \
+    --uid 1000 \
     --ingroup user \
     --disabled-password \
     --gecos user \
